@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lansing 법인 비전 BMPD 분석</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Malgun Gothic', sans-serif; }
+        body { background-color: #f5f5f5; display: flex; justify-content: center; padding: 20px 10px; }
+        .container { width: 100%; max-width: 450px; background: white; border: 1px solid #e0e0e0; border-radius: 4px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        
+        .header { background-color: #444; color: white; text-align: center; padding: 25px 15px; }
+        .header h1 { font-size: 22px; font-weight: bold; margin-bottom: 10px; }
+        .header p { font-size: 13px; color: #ccc; }
+        
+        .tabs { background: #333; color: white; text-align: center; padding: 12px 0; font-size: 14px; font-weight: bold; }
+        
+        .form-body { padding: 20px; }
+        .form-group { margin-bottom: 18px; }
+        .form-group label { display: block; font-size: 14px; font-weight: bold; margin-bottom: 6px; color: #111; }
+        
+        select, input[type="text"], textarea {
+            width: 100%; padding: 10px; font-size: 14px; border: 1px solid #ddd; border-radius: 4px; background-color: #fafafa; outline: none; color: #333;
+        }
+        select:focus, input[type="text"]:focus, textarea:focus { background-color: #fff; border-color: #888; }
+        textarea { resize: vertical; min-height: 80px; }
+        
+        .btn-submit {
+            width: 100%; background-color: #007bff; color: white; border: none; padding: 14px; font-size: 15px; font-weight: bold; border-radius: 4px; cursor: pointer;
+        }
+        .btn-submit:disabled { background-color: #ccc; cursor: not-allowed; }
+        .footer-mark { text-align: right; color: #aaa; font-size: 12px; margin-top: 15px; }
+    </style>
+
+<link href='style.css' rel='stylesheet'/></head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>Lansing 법인 Vision<br>BMPD 분석</h1>
+        <p>지속 가능한 데이터 분석 시스템</p>
+    </div>
+    
+    <div class="tabs">부동 분석 리포트 생성</div>
+    
+    <div class="form-body">
+        <div class="form-group">
+            <label>종류 :</label>
+            <select id="type">
+			          <option value="-">-</option>
+                <option value="BM">BM</option>
+                <option value="PD">PD</option>
+                <option value="PM">PM</option>
+                <option value="ETC">ETC</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>0. Site :</label>
+            <select id="site">
+                <option value="-">-</option>
+                <option value="ESMI_L">ESMI_L</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>1. 호기 :</label>
+            <select id="hogi">
+                <option value="-">-</option>
+                <option value="1-1 Unit">1-1 Unit</option>
+				        <option value="1-2 Unit">1-2 Unit</option>
+				        <option value="1-3 Unit">1-3 Unit</option>
+				        <option value="2-1 Unit">2-1 Unit</option>
+				        <option value="2-2 Unit">2-2 Unit</option>
+				        <option value="2-3 Unit">2-3 Unit</option>
+				        <option value="3-1 Unit">3-1 Unit</option>
+				        <option value="3-2 Unit">3-2 Unit</option>
+				        <option value="3-3 Unit">3-3 Unit</option>
+				        <option value="4-1 Unit">4-1 Unit</option>
+				        <option value="4-2 Unit">4-2 Unit</option>
+				        <option value="4-3 Unit">4-3 Unit</option>
+				        <option value="5-1 Unit">5-1 Unit</option>
+				        <option value="5-2 Unit">5-2 Unit</option>
+				        <option value="5-3 Unit">5-3 Unit</option>
+								<option value="H-Lami 1">H-Lami 1</option>
+								<option value="H-Lami 2">H-Lami 2</option>
+				        <option value="Rework 1">Rework 1</option>
+				        <option value="Rework 2">Rework 2</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>2-1. Machine :</label>
+            <select id="machine">
+                <option value="-">-</option>
+                <option value="Lami">Lami</option>
+                <option value="STK">STK</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>2-2. Unit :</label>
+            <select id="unit">
+                <option value="-">-</option>
+                <option value="L_Merge Vision">L_Merge Vision</option>
+                <option value="L_Long Sepa Sealing Vision">L_Long Sepa Sealing Vision</option>
+                <option value="L_NG Mark Vision">L_NG Mark Vision</option>
+                <option value="L_Final Vision">L_Final Vision</option>
+                <option value="S_Sepa Vision">S_Sepa Vision</option>
+				        <option value="S_Align Vision">S_Align Vision</option>
+                <option value="S_Stack Vision">S_Stack Vision</option>
+                <option value="S_Tape Final Vision">S_Tape Final Vision</option>
+                <option value="S_4Side Vision">S_4Side Vision</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>2-3. Assy' :</label>
+            <select id="assy">
+                <option value="-">-</option>
+                <option value="Camera">Camera</option>
+                <option value="Lighting">Lighting</option>
+                <option value="PC">PC</option>
+                <option value="전장">전장</option>
+                <option value="S/W">S/W</option>
+                <option value="H/W">H/W</option>
+                <option value="ROI 수정">ROI 수정</option>
+                <option value="Recipe 수정">Recipe 수정</option>
+                <option value="Calibration">Calibration</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>3-1. 발생시간 :</label>
+            <input type="text" id="startTime">
+        </div>
+
+        <div class="form-group">
+            <label>3-2. 조치완료 :</label>
+            <input type="text" id="endTime">
+        </div>
+
+        <div class="form-group">
+            <label>4. 작업자 :</label>
+            <input type="text" id="worker" placeholder="이름 입력">
+        </div>
+
+        <div class="form-group">
+            <label>5. 현상 :</label>
+            <textarea id="phenomenon" placeholder="현상 입력"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>6. 원인 :</label>
+            <textarea id="cause" placeholder="원인 입력"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>7. 조치 :</label>
+            <textarea id="action" placeholder="조치 내용 입력"></textarea>
+        </div>
+
+        <button class="btn-submit" id="submitBtn" onclick="saveAndCopy()">저장 및 리포트 복사</button>
+        <div class="footer-mark">HG Vision System</div>
+    </div>
+</div>
+
+<script>
+    // ⚠️ 중요: 발급받으신 구글 웹앱 URL(macros/s/.../exec) 주소를 여기에 정확히 붙여넣으세요!
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwwoWUxh1sfqoCMyJfbmmAtxBGI38cPDFB0RgfYW65y4VMg-ApIfRg_p-zUoDA-RFrg/exec";
+
+    // 날짜 및 시간 자동 입력 기능
+    function setNow() {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        const date = now.getDate();
+        let hours = now.getHours();
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const ampm = hours >= 12 ? '오후' : '오전';
+        
+        hours = hours % 12;
+        hours = hours ? hours : 12;
+        
+        const timeStr = `${year}년 ${month}월 ${date}일 ${ampm} ${hours}:${minutes}`;
+        document.getElementById('startTime').value = timeStr;
+        document.getElementById('endTime').value = timeStr;
+    }
+    setNow();
+
+    function saveAndCopy() {
+        const btn = document.getElementById('submitBtn');
+        btn.disabled = true;
+        btn.innerText = "처리 중...";
+
+        // 입력 데이터 정리 (누락 방지를 위해 값이 없으면 마이너스 표시)
+        const data = {
+            type: document.getElementById('type').value,
+            site: document.getElementById('site').value,
+            hogi: document.getElementById('hogi').value,
+            machine: document.getElementById('machine').value,
+            unit: document.getElementById('unit').value,
+            assy: document.getElementById('assy').value,
+            startTime: document.getElementById('startTime').value,
+            endTime: document.getElementById('endTime').value,
+            worker: document.getElementById('worker').value.trim() || '-',
+            phenomenon: document.getElementById('phenomenon').value.trim() || '-',
+            cause: document.getElementById('cause').value.trim() || '-',
+            action: document.getElementById('action').value.trim() || '-'
+        };
+
+        // 완벽한 전체 카카오톡 리포트 텍스트 포맷 (누락 방지)
+        const report = `[부동 분석 공유]
+종류: ${data.type}
+0. Site : ${data.site}
+1. 호기 : ${data.hogi}
+2-1. Machine : ${data.machine}
+2-2. Unit : ${data.unit}
+2-3. Assy' : ${data.assy}
+3-1. 발생시간 : ${data.startTime}
+3-2. 조치완료 : ${data.endTime}
+4. 작업자 : ${data.worker}
+5. 현상 : ${data.phenomenon}
+6. 원인 : ${data.cause}
+7. 조치 : ${data.action}`;
+
+        // 1. 구글 스프레드시트로 전송 및 백엔드 실행
+        fetch(SCRIPT_URL, { 
+            method: "POST", 
+            mode: "no-cors", 
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data) 
+        })
+        .then(() => {
+            // 전송 완료 후 시스템 클립보드에 복사 수행
+            copyText(report, btn);
+        })
+        .catch(err => {
+            console.error(err);
+            // 통신 에러가 나더라도 클립보드 복사는 실행되도록 안전장치 마련
+            copyText(report, btn);
+        });
+    }
+
+    function copyText(text, btnElement) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert("구글 시트에 데이터가 저장되었고, 리포트가 복사되었습니다!\n\n카카오톡방에 붙여넣기(Ctrl+V) 하세요.");
+                resetBtn(btnElement);
+            }).catch(() => {
+                fallbackCopy(text, btnElement);
+            });
+        } else {
+            fallbackCopy(text, btnElement);
+        }
+    }
+
+    function fallbackCopy(text, btnElement) {
+        const textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed"; 
+        document.body.appendChild(textarea);
+        textarea.select();
+        try {
+            document.execCommand("copy");
+            alert("저장 및 복사가 완료되었습니다!\n\n카카오톡방에 붙여넣기 하세요.");
+        } catch (err) {
+            alert("복사에 실패했습니다. 수동으로 텍스트를 선택해 주세요.");
+        }
+        document.body.removeChild(textarea);
+        resetBtn(btnElement);
+    }
+
+    function resetBtn(btnElement) {
+        btnElement.disabled = false;
+        btnElement.innerText = "저장 및 리포트 복사";
+    }
+</script>
+
+<script src='script.js'></script>
+</body>
+</html>
